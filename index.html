@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>育种平台</title>
+    <link rel="stylesheet" href="./style.css\\">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- 在index.html的head部分添加 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <div class="main-container">
+        <div class="map-container">
+            <div id="map"></div>
+        </div>
+    
+        <!-- 图表容器 -->
+        <div class="chart-container">
+            <div class="chart-wrapper">
+                <canvas id="arableLandChart"></canvas>
+            </div>
+            <div class="chart-wrapper">
+                <canvas id="rankDistributionChart"></canvas>
+            </div>
+        </div>
+    
+     <!-- 指标含量分布表格 -->
+     <div class="table-container">
+        <table class="data-table">
+            <caption>指标含量分布</caption>
+            <tr><th colspan="3">土壤有机质含量</th></tr>
+            <tr><td>最大值</td><td>119.7</td><td rowspan="2">平均值<br>34.2</td></tr>
+            <tr><td>最小值</td><td>2.0</td></tr>
+    
+            <tr><th colspan="3">有效磷</th></tr>
+            <tr><td>最大值</td><td>551.0</td><td rowspan="2">平均值<br>48.7</td></tr>
+            <tr><td>最小值</td><td>0.0</td></tr>
+    
+            <tr><th colspan="3">速效钾</th></tr>
+            <tr><td>最大值</td><td>1332.0</td><td rowspan="2">平均值<br>168.0</td></tr>
+            <tr><td>最小值</td><td>0.0</td></tr>
+    
+            <tr><th colspan="3">土壤pH值</th></tr>
+            <tr><td>最大值</td><td>9.4</td><td rowspan="2">平均值<br>6.3</td></tr>
+            <tr><td>最小值</td><td>0.0</td></tr>
+        </table>
+    </div>
+    
+    <!-- 耕地等级和数值型指标容器 -->
+    <div class="bottom-metrics-container">
+        <div class="bottom-metrics-panel">
+            <h3>耕地等级</h3>
+            <div class="bottom-metrics-content">
+                <div class="bottom-metrics-chart">
+                    <canvas id="cultivationGradeChart"></canvas>
+                </div>
+                <div class="bottom-metrics-data">
+                    <p>香坊区-三等(0.778)</p>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-metrics-panel">
+            <h3>数值型指标</h3>
+            <div class="bottom-metrics-content">
+                <div class="gauge-container">
+                    <canvas id="gauge1"></canvas>
+                    <p>有机质</p>
+                </div>
+                <div class="gauge-container">
+                    <canvas id="gauge2"></canvas>
+                    <p>有效磷</p>
+                </div>
+                <div class="gauge-container">
+                    <canvas id="gauge3"></canvas>
+                    <p>速效钾</p>
+                </div>
+                <div class="gauge-container">
+                    <canvas id="gauge4"></canvas>
+                    <p>pH值</p>
+                </div>
+                <div class="gauge-container">
+                    <canvas id="gauge5"></canvas>
+                    <p>耕层厚度</p>
+                </div>
+                <div class="gauge-container">
+                    <canvas id="gauge6"></canvas>
+                    <p>土壤湿度</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 控制箱 -->
+    <div class="control-box-container">
+        <div class="control-box-panel">
+            <h3>控制箱</h3>
+            <div class="control-box-content">
+                <button class="control-button">保存地图</button>
+                <button class="control-button">定位</button>
+                <div class="toggle-group">
+                    <label>智能追踪</label>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="toggle-group">
+                    <label>可点选</label>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    <!-- 概念性指标 -->
+    <div class="conceptual-indicators-container">
+        <div class="conceptual-indicators-panel">
+            <h3>概念性指标</h3>
+            <div class="conceptual-indicators-content">
+                <div class="indicator-item">土壤质地</div>
+                <div class="indicator-item">质地构型</div>
+                <div class="indicator-item">障碍因素</div>
+                <div class="indicator-item">地形部位</div>
+                <div class="indicator-item">生物多样性</div>
+                <div class="indicator-item">农田林网化程度</div>
+                <div class="indicator-item">灌溉能力</div>
+                <div class="indicator-item">排水能力</div>
+                <div class="indicator-item">清洁程度</div>
+            </div>
+        </div>
+    </div>
+      </div>
+
+
+      <!-- 在body内添加专题地图容器 -->
+<div class="special-map-container">
+    <div class="map-switcher">
+        <button class="map-type active">影像图</button>
+        <button class="map-type">土壤图</button>
+        <button class="map-type">土层厚度</button>
+    </div>
+    <div class="special-map-content" id="specialMap"></div>
+</div>
+
+    <div class="map-mask"></div>
+    <script type="module" src="src/main.js"></script>
+    <script type="module" src="/src/chart.js"></script>
+    <script type="module" src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    </body>
+</html>
